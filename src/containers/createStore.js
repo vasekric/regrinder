@@ -2,7 +2,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 
-import reducers from './reducers'
+import reducers from './combineReducers'
 
 export default (initialState = {}, history) => {
   let middleware = applyMiddleware(thunk, routerMiddleware(history))
@@ -22,7 +22,7 @@ export default (initialState = {}, history) => {
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const reducers = require('./reducers').default
+      const reducers = require('./combineReducers').default
 
       store.replaceReducer(reducers)
     })

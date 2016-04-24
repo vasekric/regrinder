@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react'
+import Helmet from 'react-helmet'
 import classes from './Counter.scss'
 
 // FlowType annotations
@@ -11,6 +12,7 @@ type Props = {
 
 export const Counter = (props: Props) => (
   <div>
+    <Helmet title='Counter' />
     <h2 className={classes.counterContainer}>
       Counter:
       {' '}

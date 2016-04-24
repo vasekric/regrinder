@@ -1,6 +1,6 @@
 {
   "name": "react-redux-starter-kit",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "description": "Get started with React, Redux, and React-Router!",
   "main": "index.js",
   "engines": {
@@ -111,10 +111,12 @@
     "postcss-loader": "^0.8.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
+    "react-helmet": "^3.0.2",
     "react-redux": "^4.0.0",
     "react-router": "^2.2.0",
     "react-router-redux": "^4.0.0",
     "redux": "^3.0.0",
+    "redux-async-connect": "^1.0.0-rc4",
     "redux-thunk": "^2.0.0",
     "rimraf": "^2.5.1",
     "sass-loader": "^3.0.0",

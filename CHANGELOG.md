@@ -1,6 +1,17 @@
 Changelog
 =========
 
+3.0.0-alpha.1
+-------------
+
+### Features
+* Added React Helmet library
+
+### Improvements
+* Project structure rearranged
+* React router simplified by using jsx
+* Reducer simplified
+
 3.0.0-alpha.0
 -------------
 
