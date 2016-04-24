@@ -21,7 +21,7 @@ export default (initialState = {}, history) => {
   store.asyncReducers = {}
 
   if (module.hot) {
-    module.hot.accept('./reducers', () => {
+    module.hot.accept('./combineReducers', () => {
       const reducers = require('./combineReducers').default
 
       store.replaceReducer(reducers)
