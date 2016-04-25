@@ -1,18 +1,7 @@
-React Redux Starter Kit
-=======================
-
-[![Join the chat at https://gitter.im/davezuko/react-redux-starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/davezuko/react-redux-starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/davezuko/react-redux-starter-kit.svg?branch=master)](https://travis-ci.org/davezuko/react-redux-starter-kit?branch=master)
-[![dependencies](https://david-dm.org/davezuko/react-redux-starter-kit.svg)](https://david-dm.org/davezuko/react-redux-starter-kit)
-[![devDependency Status](https://david-dm.org/davezuko/react-redux-starter-kit/dev-status.svg)](https://david-dm.org/davezuko/react-redux-starter-kit#info=devDependencies)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+React Servlet Faces -> Oh yeah, React for JSF
+=============================================
 
 This starter kit is designed to get you up and running with a bunch of awesome new front-end technologies, all on top of a configurable, feature-rich webpack build system that's already setup to provide hot reloading, CSS modules with Sass support, unit testing, code coverage reports, bundle splitting, and a whole lot more.
-
-The primary goal of this project is to remain as **unopinionated** as possible. Its purpose is not to dictate your project structure or to demonstrate a complete sample application, but to provide a set of tools intended to make front-end development robust, easy, and, most importantly, fun. Check out the full feature list below!
-
-Finally, This project wouldn't be possible without the help of our many contributors, so [thank you](#thank-you) for all of your help.
-
 
 Table of Contents
 -----------------
@@ -70,7 +59,7 @@ Getting Started
 Just clone the repo and install the necessary node modules:
 
 ```shell
-$ git clone https://github.com/davezuko/react-redux-starter-kit.git
+$ git clone https://github.com/vasekric/react-redux-starter-kit.git
 $ cd react-redux-starter-kit
 $ npm install                   # Install Node modules listed in ./package.json (may take a while the first time)
 $ npm start                     # Compile and launch
@@ -105,7 +94,7 @@ $ rm -rf .git && git init                         # Start a new git repository
 Great, you now have a fresh project! There are a few titles you'll probably want to update, and then you're good to go:
 
 * `~/package.json` - package name
-* `~/src/index.html` - template title tag
+* `~/src/index.html` - Initial template title tag, You can also use React Helmet
 
 Usage
 -----
@@ -183,51 +172,26 @@ The folder structure provided is only meant to serve as a guide, it is by no mea
 
 ```
 .
-├── bin                      # Build/Start scripts
-├── blueprints               # Blueprint files for redux-cli
-├── build                    # All build-related configuration
-│   └── webpack              # Environment-specific configuration files for webpack
-├── config                   # Project configuration settings
-├── interfaces               # Type declarations for Flow
-├── server                   # Koa application (uses webpack middleware)
-│   └── main.js              # Server application entry point
-├── src                      # Application source code
-│   ├── main.js              # Application bootstrap and rendering
-│   ├── components           # Reusable Presentational Components
-│   ├── containers           # Reusable Container Components
-│   ├── layouts              # Components that dictate major page structure
-│   ├── static               # Static assets (not imported anywhere in source code)
-│   ├── styles               # Application-wide styles (generally settings)
-│   ├── store                # Redux-specific pieces
-│   │   ├── createStore.js   # Create and instrument redux store
-│   │   └── reducers.js      # Reducer registry and injection
-│   └── routes               # Main route definitions and async split points
-│       ├── index.js         # Bootstrap main application routes with store
-│       ├── Root.js          # Wrapper component for context-aware providers
-│       ├── Home             # Fractal route
-│       │   ├── index.js     # Route definitions and async split points
-│       │   ├── assets       # Assets required to render components
-│       │   ├── components   # Presentational React Components
-│       │   ├── container    # Connect components to actions and store
-│       │   ├── modules      # Collections of reducers/constants/actions
-│       │   └── routes **    # Fractal sub-routes (** optional)
-│       └── NotFound         # Capture unknown routes in component
-└── tests                    # Unit tests
+├── bin                          # Build/Start scripts
+├── blueprints                   # Blueprint files for redux-cli
+├── build                        # All build-related configuration
+│   └── webpack                  # Environment-specific configuration files for webpack
+├── config                       # Project configuration settings
+├── interfaces                   # Type declarations for Flow
+├── server                       # Koa application (uses webpack middleware)
+│   └── main.js                  # Server application entry point
+├── src                          # Application source code
+│   ├── main.js                  # Application bootstrap and rendering
+│   ├── createRoutes.js          # Define application router
+│   ├── components               # Reusable Presentational Components
+│   ├── containers               # Reusable Containers for Components
+│   │   ├── createStore.js       # Create and instrument redux store
+│   │   └── combineReducers.js   # Reducer registry and injection
+│   ├── layouts                  # Components that dictate major page structure
+│   ├── static                   # Static assets (not imported anywhere in source code)
+│   ├── styles                   # Application-wide styles (generally settings)
+└── tests                        # Unit tests
 ```
-
-#### Fractal App Structure
-
-_Also known as: Self-Contained Apps, Recursive Route Hierarchy, Providers, etc_
-
-Small applications can be built using a flat directory structure, with folders for `components`, `containers`, etc. However, this structure does not scale and can seriously affect development velocity as your project grows. Starting with a fractal structure allows your application to organically drive its own architecture from day one.
-
-We use `react-router` [route definitions](https://github.com/reactjs/react-router/blob/master/docs/API.md#plainroute) (`<route>/index.js`) to define units of logic within our application. *Additional child routes can be nested in a fractal hierarchy.*
-
-This provides many benefits that may not be immediately obvious:
-* Routes can be be bundled into "chunks" using webpack's [code splitting](https://webpack.github.io/docs/code-splitting.html) and merging algorithm. This means that the entire dependency tree for each route can be omitted from the initial bundle and then loaded *on demand*.
-* Since logic is self-contained, routes can easily be broken into separate repositories and referenced with webpack's [DLL plugin](https://github.com/webpack/docs/wiki/list-of-plugins#dllplugin) for flexible, high-performance development and scalability.
-
-Large, mature apps tend to naturally organize themselves in this way—analogous to large, mature trees (as in actual trees :evergreen_tree:). The trunk is the router, branches are route bundles, and leaves are views composed of common/shared components/containers. Global application and UI state should be placed on or close to the trunk (or perhaps at the base of a huge branch, eg. `/app` route).
 
 ##### Layouts
 * Stateless components that dictate major page structure
@@ -262,8 +226,6 @@ Large, mature apps tend to naturally organize themselves in this way—analogous
   - *Must* contain an `index.js` that returns route definition
   - **Optional:** assets, components, containers, redux modules, nested child routes
   - Additional child routes can be nested within `routes` directory in a fractal hierarchy
-
-**Note:** This structure is designed to provide a flexible foundation for module bundling and dynamic loading. **Using a fractal structure is optional, smaller apps might benefit from a flat routes directory**, which is totally cool! Webpack creates split points based on static analysis of `require` during compilation; the recursive hierarchy folder structure is simply for organizational purposes.
 
 Webpack
 -------
@@ -393,12 +355,3 @@ While this is common to any sizable application, it's worth noting for those who
 
 Thank You
 ---------
-
-This project wouldn't be possible without help from the community, so I'd like to highlight some of its biggest contributors. Thank you all for your hard work, you've made my life a lot easier and taught me a lot in the process.
-
-* [Justin Greenberg](https://github.com/justingreenberg) - For all of your PR's, getting us to Babel 6, and constant work improving our patterns.
-* [Roman Pearah](https://github.com/neverfox) - For your bug reports, help in triaging issues, and PR contributions.
-* [Spencer Dixin](https://github.com/SpencerCDixon) - For your creation of [redux-cli](https://github.com/SpencerCDixon/redux-cli).
-* [Jonas Matser](https://github.com/mtsr) - For your help in triaging issues and unending support in our Gitter channel.
-
-And to everyone else who has contributed, even if you are not listed here your work is appreciated.
