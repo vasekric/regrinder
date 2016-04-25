@@ -1,5 +1,7 @@
-React Servlet Faces -> Oh yeah, React for JSF
-=============================================
+React Redux Faces -> Oh yeah, React for JSF
+===========================================
+
+This is detached fork from https://github.com/davezuko/react-redux-starter-kit
 
 This starter kit is designed to get you up and running with a bunch of awesome new front-end technologies, all on top of a configurable, feature-rich webpack build system that's already setup to provide hot reloading, CSS modules with Sass support, unit testing, code coverage reports, bundle splitting, and a whole lot more.
 
