@@ -3,6 +3,7 @@
 // Constants
 // ------------------------------------
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
+export const HTML = 'HTML'
 
 // ------------------------------------
 // Actions
@@ -35,9 +36,27 @@ export const doubleAsync = (): Function => {
   return (dispatch: Function, getState: Function): Promise => {
     return new Promise((resolve: Function): void => {
       setTimeout(() => {
-        dispatch(increment(getState().counter))
+        dispatch(increment(getState().counter.counter))
         resolve()
       }, 200)
     })
+  }
+}
+
+export const fetchHtml = (): Function => {
+  return (dispatch: Function, getState: Function): Promise => {
+    return new Promise((resolve: Function): void => {
+      fetch('http://localhost:3000/')
+        .then((req) => {
+          return req.text()
+        })
+        .then(html => {
+          dispatch({
+            type: HTML,
+            payload: html
+          })
+          resolve()
+        })
+      })
   }
 }

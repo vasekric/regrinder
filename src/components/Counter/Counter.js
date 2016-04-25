@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, {PropTypes} from 'react'
 import Helmet from 'react-helmet'
 import classes from './Counter.scss'
 
@@ -7,10 +7,12 @@ import classes from './Counter.scss'
 type Props = {
   counter: number,
   doubleAsync: Function,
-  increment: Function
+  increment: Function,
+  fetchHtml: Function,
+  html: string
 }
 
-export const Counter = (props: Props) => (
+const Counter = (props: Props) => (
   <div>
     <Helmet title='Counter' />
     <h2 className={classes.counterContainer}>
@@ -27,13 +29,22 @@ export const Counter = (props: Props) => (
     <button className='btn btn-default' onClick={props.doubleAsync}>
       Double (Async)
     </button>
+    <button className='btn btn-default' onClick={props.fetchHtml}>
+      fetchHtml
+    </button>
+    <br/>
+    <code>
+      {props.html}
+    </code>
   </div>
 )
 
 Counter.propTypes = {
-  counter: React.PropTypes.number.isRequired,
-  doubleAsync: React.PropTypes.func.isRequired,
-  increment: React.PropTypes.func.isRequired
+  counter: PropTypes.number.isRequired,
+  html: PropTypes.string.isRequired,
+  doubleAsync: PropTypes.func.isRequired,
+  increment: PropTypes.func.isRequired,
+  fetchHtml: PropTypes.func.isRequired
 }
 
 export default Counter

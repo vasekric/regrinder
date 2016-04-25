@@ -12,13 +12,13 @@ export const createRoutes = (store) => {
   return (
     <Route path='/' component={CoreLayout}>
       { /* Home (main) route */ }
-      <IndexRoute component={Home}/>
+      <IndexRoute component={Home} />
 
       { /* Routes */ }
-      <Route path='counter' component={Counter}/>
+      <Route path='counter' component={Counter} />
 
       { /* Catch all route */ }
-      <Route path='*' component={NotFound} status={404}/>
+      <Route path='*' component={NotFound} status={404} />
     </Route>
   )
 }
