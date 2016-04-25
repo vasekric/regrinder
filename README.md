@@ -35,6 +35,7 @@ Features
 * [react-router](https://github.com/rackt/react-router) (`^2.0.0`)
   * Asynchronous routes configured with dependencies and reducers
 * [react-router-redux](https://github.com/rackt/react-router-redux) (`^4.0.0`)
+* [fetch](https://github.com/github/fetch)
 * [Webpack](https://github.com/webpack/webpack)
   * Vanilla HMR using `module.hot` and `webpack-dev-middleware`
   * Code-splitting using `react-router` route configuration
