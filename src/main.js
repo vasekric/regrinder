@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
+import createHashHistory from 'history/lib/createHashHistory'
 import { Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './containers/createStore'
@@ -19,18 +20,18 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 // react-router-redux of its location.
 const store = createStore(window.__INITIAL_STATE__, browserHistory)
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: (state) => state.router
+    selectLocationState: (state) => state.router
 })
 
 let render = (key = null) => {
   const routes = require('./createRoutes').default(store)
   const App = (
     <Provider store={store}>
-      <div style={{ height: '100%' }}>
-        <Router history={history} children={routes} key={key} />
-      </div>
+    <div style={{ height: '100%' }}>
+<Router history={history} children={routes} key={key} />
+    </div>
     </Provider>
-  )
+)
   ReactDOM.render(App, MOUNT_ELEMENT)
 }
 

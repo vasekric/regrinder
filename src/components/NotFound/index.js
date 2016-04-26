@@ -1,6 +1,3 @@
 import NotFound from './NotFound'
 
-export default {
-  path: '*',
-  component: NotFound
-}
+export default NotFound

@@ -1,6 +1,6 @@
 import React from 'react'
 import {IndexRoute, Route} from 'react-router'
-import CoreLayout from 'layouts/CoreLayout/CoreLayout'
+import CoreLayout from 'layouts/CoreLayout'
 import Home from 'components/HomeView'
 import NotFound from 'components/NotFound'
 import Counter from 'containers/Counter'
