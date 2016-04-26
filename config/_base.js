@@ -26,7 +26,7 @@ const config = {
   // Compiler Configuration
   // ----------------------------------
   compiler_css_modules     : true,
-  compiler_devtool         : 'source-map',
+  compiler_devtool         : argv.no_debug ? 'eval' : 'source-map',
   compiler_hash_type       : 'hash',
   compiler_fail_on_warning : false,
   compiler_quiet           : false,
@@ -42,7 +42,10 @@ const config = {
     'react-redux',
     'react-router',
     'react-router-redux',
-    'redux'
+    'redux',
+    'react-helmet',
+    'immutable',
+    'material-ui'
   ],
 
   // ----------------------------------
