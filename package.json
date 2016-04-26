@@ -1,5 +1,10 @@
 {
-  "name": "react-redux-starter-kit",
+  "name": "regrinder",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasekric/regrinder.git"
+  },
+  "license": "MIT",
   "version": "3.0.0-alpha.1",
   "description": "Get started with React, Redux, and React-Router!",
   "main": "index.js",
@@ -72,12 +77,6 @@
       }
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
-  },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
-  "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.3.17",
@@ -101,6 +100,7 @@
     "fs-extra": "^0.28.0",
     "history": "^2.0.0",
     "html-webpack-plugin": "^2.7.1",
+    "immutable": "^3.8.1",
     "imports-loader": "^0.6.5",
     "json-loader": "^0.5.4",
     "koa": "^2.0.0-alpha.3",
