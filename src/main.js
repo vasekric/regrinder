@@ -2,10 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import createHashHistory from 'history/lib/createHashHistory'
-import { Router, useRouterHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
+import {Router, useRouterHistory} from 'react-router'
+import {syncHistoryWithStore} from 'react-router-redux'
 import createStore from './containers/createStore'
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin()
 
 const MOUNT_ELEMENT = document.getElementById('app')
 
@@ -20,18 +27,18 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 // react-router-redux of its location.
 const store = createStore(window.__INITIAL_STATE__, browserHistory)
 const history = syncHistoryWithStore(browserHistory, store, {
-    selectLocationState: (state) => state.router
+  selectLocationState: (state) => state.router
 })
 
 let render = (key = null) => {
   const routes = require('./createRoutes').default(store)
   const App = (
     <Provider store={store}>
-    <div style={{ height: '100%' }}>
-<Router history={history} children={routes} key={key} />
-    </div>
+      <div style={{ height: '100%' }}>
+        <Router history={history} children={routes} key={key} />
+      </div>
     </Provider>
-)
+  )
   ReactDOM.render(App, MOUNT_ELEMENT)
 }
 
