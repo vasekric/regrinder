@@ -105,12 +105,8 @@
     "koa-convert": "^1.2.0",
     "koa-proxy": "^0.6.0",
     "koa-static": "^2.0.0",
-<<<<<<< HEAD
     "material-ui": "^0.14.4",
-    "node-sass": "^3.6.0",
-=======
     "node-sass": "^3.7.0",
->>>>>>> 31de08b... upgrade(node-sass): ^3.3.3 -> ^3.7.0
     "normalize.css": "^4.1.1",
     "postcss-loader": "^0.9.0",
     "react": "^15.0.0",
