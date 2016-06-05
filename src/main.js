@@ -8,27 +8,46 @@ import createStore from './containers/createStore'
 import {Provider} from 'react-redux'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
+// ========================================================
+// Browser History Setup
+// ========================================================
 // Needed for onTouchTap
 // Can go away when react 1.0 release
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin()
 
-const MOUNT_ELEMENT = document.getElementById('app')
-
 // Configure history for react-router
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: __BASENAME__
 })
 
+// ========================================================
+// Store and History Instantiation
+// ========================================================
 // Create redux store and sync with react-router-redux. We have installed the
 // react-router-redux reducer under the key "router" in src/routes/createRoutes.js,
 // so we need to provide a custom `selectLocationState` to inform
 // react-router-redux of its location.
-const store = createStore(window.__INITIAL_STATE__, browserHistory)
+const initialState = window.___INITIAL_STATE__
+const store = createStore(initialState, browserHistory)
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: (state) => state.router
 })
+
+// ========================================================
+// Developer Tools Setup
+// ========================================================
+if (__DEBUG__) {
+  if (window.devToolsExtension) {
+    window.devToolsExtension.open()
+  }
+}
+
+// ========================================================
+// Render Setup
+// ========================================================
+const MOUNT_NODE = document.getElementById('app')
 
 let render = (key = null) => {
   const routes = require('./createRoutes').default(store)
@@ -39,7 +58,7 @@ let render = (key = null) => {
       </div>
     </Provider>
   )
-  ReactDOM.render(App, MOUNT_ELEMENT)
+  ReactDOM.render(App, MOUNT_NODE)
 }
 
 // Enable HMR and catch runtime errors in RedBox
@@ -49,7 +68,7 @@ if (__DEV__ && module.hot) {
   const renderError = (error) => {
     const RedBox = require('redbox-react')
 
-    ReactDOM.render(<RedBox error={error} />, MOUNT_ELEMENT)
+    ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
   }
   render = () => {
     try {
@@ -61,9 +80,7 @@ if (__DEV__ && module.hot) {
   module.hot.accept(['./createRoutes'], () => render())
 }
 
-// Use Redux DevTools chrome extension
-if (__DEBUG__) {
-  if (window.devToolsExtension) window.devToolsExtension.open()
-}
-
+// ========================================================
+// Go!
+// ========================================================
 render()
