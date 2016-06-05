@@ -7,6 +7,7 @@ import {syncHistoryWithStore} from 'react-router-redux'
 import createStore from './containers/createStore'
 import {Provider} from 'react-redux'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+import AppContainer from './containers/AppContainer'
 
 // ========================================================
 // Browser History Setup
@@ -26,7 +27,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 // Store and History Instantiation
 // ========================================================
 // Create redux store and sync with react-router-redux. We have installed the
-// react-router-redux reducer under the key "router" in src/routes/createRoutes.js,
+// react-router-redux reducer under the routerKey "router" in src/routes/index.js,
 // so we need to provide a custom `selectLocationState` to inform
 // react-router-redux of its location.
 const initialState = window.___INITIAL_STATE__
@@ -49,16 +50,17 @@ if (__DEBUG__) {
 // ========================================================
 const MOUNT_NODE = document.getElementById('app')
 
-let render = (key = null) => {
+let render = (routerKey = null) => {
   const routes = require('./createRoutes').default(store)
-  const App = (
-    <Provider store={store}>
-      <div style={{ height: '100%' }}>
-        <Router history={history} children={routes} key={key} />
-      </div>
-    </Provider>
+  ReactDOM.render(
+    <AppContainer 
+      store={store}
+      history={history} 
+      routes={routes} 
+      routerKey={routerKey}
+    />,
+    MOUNT_NODE
   )
-  ReactDOM.render(App, MOUNT_NODE)
 }
 
 // Enable HMR and catch runtime errors in RedBox
