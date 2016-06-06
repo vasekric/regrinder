@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {IndexLink, Link, browserHistory} from 'react-router'
-import AppBar from 'material-ui/lib/app-bar'
-import LeftNav from 'material-ui/lib/left-nav'
-import MenuItem from 'material-ui/lib/menus/menu-item'
-import FontIcon from 'material-ui/lib/font-icon'
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import AppBar from 'material-ui/AppBar'
+import FontIcon from 'material-ui/FontIcon'
 
 class Header extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Header extends Component {
           title='Regrinder'
           onLeftIconButtonTouchTap={this.handleToggle}
         />
-        <LeftNav open={this.state.open}>
+        <Drawer open={this.state.open}>
           <FontIcon className='muidocs-icon-action-home' onClick={this.handleToggle} >back</FontIcon>
           <IndexLink to='/'>
             <MenuItem>Home</MenuItem>
@@ -28,7 +28,7 @@ class Header extends Component {
           <Link to='/counter'>
             <MenuItem>Counter</MenuItem>
           </Link>
-        </LeftNav>
+        </Drawer>
       </div>
     )
   }
